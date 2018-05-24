@@ -1,0 +1,17 @@
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\obj\Debug\WcfServiceBiblio.csprojResolveAssemblyReference.cache
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\obj\Debug\WcfServiceBiblio.csproj.CoreCompileInputs.cache
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\CodeFirstLab.EF6RecipesContext.mdf
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\CodeFirstLab.EF6RecipesContext_log.ldf
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\WcfServiceBiblio.dll.config
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\WcfServiceBiblio.dll
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\WcfServiceBiblio.pdb
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\Biblioteca_P1.exe
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\EntityFramework.dll
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\Biblioteca_P1.pdb
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\Biblioteca_P1.exe.config
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\EntityFramework.xml
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\obj\Debug\WcfServiceBiblio.csproj.CopyComplete
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\obj\Debug\WcfServiceBiblio.dll
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\obj\Debug\WcfServiceBiblio.pdb
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\manol\source\repos\Biblioteca_P1\WcfServiceBiblio\bin\Debug\EntityFramework.SqlServer.xml

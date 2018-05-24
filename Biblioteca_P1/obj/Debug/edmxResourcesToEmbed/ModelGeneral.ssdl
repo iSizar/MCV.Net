@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BTESTModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BTESTModelStoreContainer">
+    <EntitySet Name="AUTOR" EntityType="BTESTModel.Store.AUTOR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CARTE" EntityType="BTESTModel.Store.CARTE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CITITOR" EntityType="BTESTModel.Store.CITITOR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GEN" EntityType="BTESTModel.Store.GEN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IMPRUMUT" EntityType="BTESTModel.Store.IMPRUMUT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="REVIEW" EntityType="BTESTModel.Store.REVIEW" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AutorId" Association="BTESTModel.Store.AutorId">
+      <End Role="AUTOR" EntitySet="AUTOR" />
+      <End Role="CARTE" EntitySet="CARTE" />
+    </AssociationSet>
+    <AssociationSet Name="CarteId" Association="BTESTModel.Store.CarteId">
+      <End Role="CARTE" EntitySet="CARTE" />
+      <End Role="IMPRUMUT" EntitySet="IMPRUMUT" />
+    </AssociationSet>
+    <AssociationSet Name="GenId" Association="BTESTModel.Store.GenId">
+      <End Role="GEN" EntitySet="GEN" />
+      <End Role="CARTE" EntitySet="CARTE" />
+    </AssociationSet>
+    <AssociationSet Name="CititorId" Association="BTESTModel.Store.CititorId">
+      <End Role="CITITOR" EntitySet="CITITOR" />
+      <End Role="IMPRUMUT" EntitySet="IMPRUMUT" />
+    </AssociationSet>
+    <AssociationSet Name="ImprumutId" Association="BTESTModel.Store.ImprumutId">
+      <End Role="IMPRUMUT" EntitySet="IMPRUMUT" />
+      <End Role="REVIEW" EntitySet="REVIEW" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AUTOR">
+    <Key>
+      <PropertyRef Name="AutorId" />
+    </Key>
+    <Property Name="AutorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nume" Type="char" Nullable="true" MaxLength="20" />
+    <Property Name="Prenume" Type="char" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="CARTE">
+    <Key>
+      <PropertyRef Name="CarteId" />
+    </Key>
+    <Property Name="CarteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AutorId" Type="int" Nullable="true" />
+    <Property Name="Titlu" Type="char" Nullable="true" MaxLength="50" />
+    <Property Name="GenId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="CITITOR">
+    <Key>
+      <PropertyRef Name="CititorId" />
+    </Key>
+    <Property Name="CititorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nume" Type="char" Nullable="true" MaxLength="15" />
+    <Property Name="Prenume" Type="char" Nullable="true" MaxLength="15" />
+    <Property Name="Adresa" Type="char" Nullable="true" MaxLength="50" />
+    <Property Name="Email" Type="char" Nullable="true" MaxLength="50" />
+    <Property Name="Stare" Type="binary" Nullable="true" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="GEN">
+    <Key>
+      <PropertyRef Name="GenId" />
+    </Key>
+    <Property Name="GenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descriere" Type="char" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="IMPRUMUT">
+    <Key>
+      <PropertyRef Name="ImprumutId" />
+    </Key>
+    <Property Name="ImprumutId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CarteId" Type="int" Nullable="true" />
+    <Property Name="CititorId" Type="int" Nullable="true" />
+    <Property Name="DataImprumut" Type="datetime" Nullable="true" />
+    <Property Name="DataScadenta" Type="datetime" Nullable="true" />
+    <Property Name="DataRestituire" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImprumutId" Type="int" Nullable="true" />
+    <Property Name="Text" Type="varchar" Nullable="true" MaxLength="4096" />
+  </EntityType>
+  <Association Name="AutorId">
+    <End Role="AUTOR" Type="BTESTModel.Store.AUTOR" Multiplicity="0..1" />
+    <End Role="CARTE" Type="BTESTModel.Store.CARTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTOR">
+        <PropertyRef Name="AutorId" />
+      </Principal>
+      <Dependent Role="CARTE">
+        <PropertyRef Name="AutorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CarteId">
+    <End Role="CARTE" Type="BTESTModel.Store.CARTE" Multiplicity="0..1" />
+    <End Role="IMPRUMUT" Type="BTESTModel.Store.IMPRUMUT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARTE">
+        <PropertyRef Name="CarteId" />
+      </Principal>
+      <Dependent Role="IMPRUMUT">
+        <PropertyRef Name="CarteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GenId">
+    <End Role="GEN" Type="BTESTModel.Store.GEN" Multiplicity="0..1" />
+    <End Role="CARTE" Type="BTESTModel.Store.CARTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GEN">
+        <PropertyRef Name="GenId" />
+      </Principal>
+      <Dependent Role="CARTE">
+        <PropertyRef Name="GenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CititorId">
+    <End Role="CITITOR" Type="BTESTModel.Store.CITITOR" Multiplicity="0..1" />
+    <End Role="IMPRUMUT" Type="BTESTModel.Store.IMPRUMUT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CITITOR">
+        <PropertyRef Name="CititorId" />
+      </Principal>
+      <Dependent Role="IMPRUMUT">
+        <PropertyRef Name="CititorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ImprumutId">
+    <End Role="IMPRUMUT" Type="BTESTModel.Store.IMPRUMUT" Multiplicity="0..1" />
+    <End Role="REVIEW" Type="BTESTModel.Store.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMPRUMUT">
+        <PropertyRef Name="ImprumutId" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="ImprumutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

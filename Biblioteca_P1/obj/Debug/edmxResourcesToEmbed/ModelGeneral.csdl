@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BTESTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AUTOR">
+    <Key>
+      <PropertyRef Name="AutorId" />
+    </Key>
+    <Property Name="AutorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nume" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Prenume" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="CARTE" Relationship="Self.AutorId" FromRole="AUTOR" ToRole="CARTE" />
+  </EntityType>
+  <EntityType Name="CARTE">
+    <Key>
+      <PropertyRef Name="CarteId" />
+    </Key>
+    <Property Name="CarteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AutorId" Type="Int32" />
+    <Property Name="Titlu" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="GenId" Type="Int32" />
+    <NavigationProperty Name="AUTOR" Relationship="Self.AutorId" FromRole="CARTE" ToRole="AUTOR" />
+    <NavigationProperty Name="IMPRUMUT" Relationship="Self.CarteId" FromRole="CARTE" ToRole="IMPRUMUT" />
+    <NavigationProperty Name="GEN" Relationship="Self.GenId" FromRole="CARTE" ToRole="GEN" />
+  </EntityType>
+  <EntityType Name="CITITOR">
+    <Key>
+      <PropertyRef Name="CititorId" />
+    </Key>
+    <Property Name="CititorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nume" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Prenume" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+    <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="Stare" Type="Binary" MaxLength="16" FixedLength="true" />
+    <NavigationProperty Name="IMPRUMUT" Relationship="Self.CititorId" FromRole="CITITOR" ToRole="IMPRUMUT" />
+  </EntityType>
+  <EntityType Name="GEN">
+    <Key>
+      <PropertyRef Name="GenId" />
+    </Key>
+    <Property Name="GenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descriere" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="CARTE" Relationship="Self.GenId" FromRole="GEN" ToRole="CARTE" />
+  </EntityType>
+  <EntityType Name="IMPRUMUT">
+    <Key>
+      <PropertyRef Name="ImprumutId" />
+    </Key>
+    <Property Name="ImprumutId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarteId" Type="Int32" />
+    <Property Name="CititorId" Type="Int32" />
+    <Property Name="DataImprumut" Type="DateTime" Precision="0" />
+    <Property Name="DataScadenta" Type="DateTime" Precision="0" />
+    <Property Name="DataRestituire" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="CARTE" Relationship="Self.CarteId" FromRole="IMPRUMUT" ToRole="CARTE" />
+    <NavigationProperty Name="CITITOR" Relationship="Self.CititorId" FromRole="IMPRUMUT" ToRole="CITITOR" />
+    <NavigationProperty Name="REVIEW" Relationship="Self.ImprumutId" FromRole="IMPRUMUT" ToRole="REVIEW" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="ReviewId" />
+    </Key>
+    <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImprumutId" Type="Int32" />
+    <Property Name="Text" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="IMPRUMUT" Relationship="Self.ImprumutId" FromRole="REVIEW" ToRole="IMPRUMUT" />
+  </EntityType>
+  <Association Name="AutorId">
+    <End Role="AUTOR" Type="Self.AUTOR" Multiplicity="0..1" />
+    <End Role="CARTE" Type="Self.CARTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AUTOR">
+        <PropertyRef Name="AutorId" />
+      </Principal>
+      <Dependent Role="CARTE">
+        <PropertyRef Name="AutorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CarteId">
+    <End Role="CARTE" Type="Self.CARTE" Multiplicity="0..1" />
+    <End Role="IMPRUMUT" Type="Self.IMPRUMUT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARTE">
+        <PropertyRef Name="CarteId" />
+      </Principal>
+      <Dependent Role="IMPRUMUT">
+        <PropertyRef Name="CarteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GenId">
+    <End Role="GEN" Type="Self.GEN" Multiplicity="0..1" />
+    <End Role="CARTE" Type="Self.CARTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GEN">
+        <PropertyRef Name="GenId" />
+      </Principal>
+      <Dependent Role="CARTE">
+        <PropertyRef Name="GenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CititorId">
+    <End Role="CITITOR" Type="Self.CITITOR" Multiplicity="0..1" />
+    <End Role="IMPRUMUT" Type="Self.IMPRUMUT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CITITOR">
+        <PropertyRef Name="CititorId" />
+      </Principal>
+      <Dependent Role="IMPRUMUT">
+        <PropertyRef Name="CititorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ImprumutId">
+    <End Role="IMPRUMUT" Type="Self.IMPRUMUT" Multiplicity="0..1" />
+    <End Role="REVIEW" Type="Self.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMPRUMUT">
+        <PropertyRef Name="ImprumutId" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="ImprumutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BTESTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AUTOR" EntityType="Self.AUTOR" />
+    <EntitySet Name="CARTE" EntityType="Self.CARTE" />
+    <EntitySet Name="CITITOR" EntityType="Self.CITITOR" />
+    <EntitySet Name="GEN" EntityType="Self.GEN" />
+    <EntitySet Name="IMPRUMUT" EntityType="Self.IMPRUMUT" />
+    <EntitySet Name="REVIEW" EntityType="Self.REVIEW" />
+    <AssociationSet Name="AutorId" Association="Self.AutorId">
+      <End Role="AUTOR" EntitySet="AUTOR" />
+      <End Role="CARTE" EntitySet="CARTE" />
+    </AssociationSet>
+    <AssociationSet Name="CarteId" Association="Self.CarteId">
+      <End Role="CARTE" EntitySet="CARTE" />
+      <End Role="IMPRUMUT" EntitySet="IMPRUMUT" />
+    </AssociationSet>
+    <AssociationSet Name="GenId" Association="Self.GenId">
+      <End Role="GEN" EntitySet="GEN" />
+      <End Role="CARTE" EntitySet="CARTE" />
+    </AssociationSet>
+    <AssociationSet Name="CititorId" Association="Self.CititorId">
+      <End Role="CITITOR" EntitySet="CITITOR" />
+      <End Role="IMPRUMUT" EntitySet="IMPRUMUT" />
+    </AssociationSet>
+    <AssociationSet Name="ImprumutId" Association="Self.ImprumutId">
+      <End Role="IMPRUMUT" EntitySet="IMPRUMUT" />
+      <End Role="REVIEW" EntitySet="REVIEW" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

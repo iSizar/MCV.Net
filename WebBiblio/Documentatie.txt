@@ -1,0 +1,46 @@
+	In acest document voi explica modul in care am realizate cele 4 metode(achizitionarea unei carti, imprumutarea unei carte, restituirea unei
+carti si statisticile bibliotecii):
+	OBS: In acest document nu am specificat faptul ca datele sunt preluate de la baza de date prin wcf service-ul realizat pentru 
+proiectul precedent.
+	Prima functionalitate am realizat-o in modelul HomeComtroller:
+ 	 - metoda care returneaza un IActionResult CumparaCarte(...) / [HttpPost]CumparaCarte(...)
+ 	 - aceasta metoda se foloseste de View-ul(in care se afla un formular) cu acelasi nume pentru a prelua informatiile necesare
+introducerii unei carti noi in BD.
+
+	A doua metoda Imprumutarea unei carti:
+	 - in prumul rand HomeContrrolerul se foloseste de View-ul ImprumutaCarte pentru a prelua genul pe cartii pe care il cauta cititorul.
+	 - daca acesta se gaseste in baza de date atunci se returneaza, folosindu-se view-ul ImprumutaCarteSchGen, o lista de carti cu 
+informatiile lor(titlu,autor,gen,s.a.) apartinand gen-ul respectiv, c.c. se retureaza i lista vida.
+	 - fiecare linie din lista tabelara afisata in View-ul  ImprumutaCarteSchGen are un buton pentru imprumutare, daca acesta este 
+apasat atunci se va face o verificare daca cartea respectiva este disponibila.
+	 - aceasta verificare se va face in interiorul metodei VerfDispCarte, daca cartea este disponibila atunci acesta metoda
+va returna un ActionToRedirect(...) spre metoda "Imprumuta". View-ul asociat acestei metode este un formular care contine datele 
+cititorului, odate completate si apasat sublmit [HttpPost]Imprumuta se va ocupa de inregistrarea noului imprumut.
+	 - in cazul in care cartea nu este se va se va afisa view-ul VerfDispCarte care va avea o sectiune dedicata datei restituirii 
+acelei carti.
+
+	A treia metoda Restituirea Carti:
+	- va afisa view-ul ListCartiDeRestituit in care vor fi imprumuturile inca ne achitate din baza de date. Fiecare rand din aceasta
+lista va contine un buton "Restituie". O data apasat vom fi redirectionati spre View-ul RestituieCarte in care este afisat un formular
+in care va fi completat un review. Apasand butonul "Save" se va putea salva in baza de date faptul ca acel imprumut a fost achitat.
+
+	A patra metoda Statistici:
+	- implementata in metoda Statistica din HomeController, aceasta metoda cuprinde urmatoarele functionalitati:
+	1. Cei mai cautati autori:
+	  	+ aceasta functionalitate a fost implementata in metoda BestAutors ,din contrrolerul HomeController,
+	        aceasta metoda preia asincron din baza de date aceasta lista de autori, apoi o transmite View-lui 
+		pentru a fi afisata.
+	2. Cele mai cautate carti:
+		+ aceasta functionalitate a fost implementata in metoda MostWantedBooks,din contrrolerul HomeController,
+	        aceasta metoda preia asincron din baza de date aceasta lista de autori, apoi o transmite View-lui 
+		pentru a fi afisata.
+	3. Cele mai cautate genuri:
+		+ aceasta functionalitate a fost implementata in metoda MostWantedGens,din contrrolerul HomeController,
+	        aceasta metoda preia asincron din baza de date aceasta lista de autori, apoi o transmite View-lui 
+		pentru a fi afisata.
+	4. Cititori in interval de timp:
+		+ aceasta functionalitate a fost implementata in metoda 2 metode una avand antetul [HttpPost]. Mai intai s-a afisat un 
+formular in cadrul view-lui CitInInterval continand 2 date calendaristice [d1,d2]. Odata completate aceste campuri si transmise prin metoda 
+POST, in backend se va solicita bazei da date lista cititorilor respectivi, apoi aceasta se va afisa in acelasi view. 
+		
+	

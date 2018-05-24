@@ -1,0 +1,14 @@
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\Biblioteca_P1.exe.config
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\Biblioteca_P1.exe
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\Biblioteca_P1.pdb
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\EntityFramework.dll
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\EntityFramework.xml
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\obj\Debug\Biblioteca_P1.csprojResolveAssemblyReference.cache
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\obj\Debug\Biblioteca_P1.csproj.CoreCompileInputs.cache
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\obj\Debug\Biblioteca_P1.csproj.CopyComplete
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\obj\Debug\Biblioteca_P1.exe
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\obj\Debug\Biblioteca_P1.pdb
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\CodeFirstLab.EF6RecipesContext.mdf
+C:\Users\manol\source\repos\Biblioteca_P1\Biblioteca_P1\bin\Debug\CodeFirstLab.EF6RecipesContext_log.ldf
